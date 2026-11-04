@@ -12,7 +12,11 @@ endif()
 
 # Same flags for every algorithm. Record these in the report's methodology section.
 set(CMAKE_CXX_FLAGS_RELEASE "-O2")
-add_compile_options(-Wall -Wextra -Wpedantic)
+if(MSVC)
+  add_compile_options(/W4)
+else()
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 # All algorithms are header-only templates (like std::nth_element),
 # so they live in include/selection/ and are shared by every target.
